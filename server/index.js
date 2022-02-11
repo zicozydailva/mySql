@@ -27,7 +27,19 @@ app.post("/create", (req, res) => {
         }
     }
     )
+
 })
+
+app.get("/employeez", async (req, res) => {
+   await db.query("SELECT * FROM employees", (err, success) => {
+       if(err) {
+           console.log(err);
+       } else {
+           res.send(success)
+       }
+   })
+})
+
 // db.connect()
 // console.log("Connected successfully!")
 

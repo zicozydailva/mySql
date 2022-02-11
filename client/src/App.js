@@ -9,13 +9,23 @@ function App() {
   const [position, setPosition] = useState("");
   const [wage, setWage] = useState("");
 
+  const [employees, setEmployees] = useState([])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const newData = {
       name, country, age, position, wage
     }
     await axios.post("/create", newData)
-    .then(() => console.log("SUCCESS"))
+    .then(() => setEmployees([...employees, newData ]))
+    
+  }
+
+  const getEmply = async () => {
+  await axios.get("/employeez").then(response => {
+    setEmployees(response.data)
+  })
+  
   }
   return (
     <div className="App">
@@ -48,8 +58,22 @@ function App() {
         <input value={wage} onChange={(e) => setWage(e.target.value)} type="number" />
         <button onClick={handleSubmit}>Add Employee</button>
 
+          <button onClick={getEmply}> Get Employees</button>
         <div className="">
-          <h1>Employees</h1>
+          <div className="p">
+            
+          {
+            employees.map(emp => {
+              return <div className="newEmply" key={emp.id}>
+                <h4>Name:{emp.name}</h4>
+                <h4>Age:{emp.age}</h4>
+                <h4>Country:{emp.country}</h4>
+                <h4>Position:{emp.position}</h4>
+                <h4>Wage:{emp.wage}</h4>
+              </div>
+            })
+          }
+          </div>
         </div>
 
       </div>

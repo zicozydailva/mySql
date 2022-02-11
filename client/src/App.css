@@ -20,6 +20,7 @@
   align-items: center;
   font-size: 14px;
   padding-left: 10px;
+  margin: 2rem;
 }
 
 input {
@@ -34,4 +35,19 @@ button {
   border: 1px solid black;
   cursor: pointer;
   margin: 1rem;
+}
+
+.newEmply {
+  padding: 1rem 0;
+  border: none;
+  border-radius: .5rem;
+  margin: 1rem 0;
+}
+
+.p {
+  
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
